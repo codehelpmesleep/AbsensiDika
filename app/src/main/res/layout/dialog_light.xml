@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtKeterangan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/typer_roboto_bold"
+            android:text="Absen Selfie Berhasil"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.Subhead.Bold"
+            android:textSize="24sp"
+            android:typeface="normal" />
+
+        <TextView
+            android:id="@+id/txtPilihAbsen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/typer_roboto_bold"
+            android:text="DATANG"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.Medium.Bold"
+            android:textSize="24sp"
+            android:typeface="normal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="120dp"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_mlarge">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/photo_female_8"
+            app:civ_border_color="@color/grey_5"
+            app:civ_border_width="1dp" />
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:text="People name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/grey_80"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtTanggal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/typer_roboto_bold"
+            android:text="Jumat, 25 April 2019"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="@color/colorfontsiap" />
+
+        <TextView
+            android:id="@+id/txtJam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:format24Hour="hh:mm:ss a"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.Subhead.Bold"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnOk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:background="@drawable/btn_rounded_primary"
+            android:paddingLeft="@dimen/spacing_mlarge"
+            android:paddingRight="@dimen/spacing_mlarge"
+            android:text="OK"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

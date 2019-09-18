@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorfontsiapgreen"
+        android:paddingLeft="20dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="4 April 2019"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+</LinearLayout>

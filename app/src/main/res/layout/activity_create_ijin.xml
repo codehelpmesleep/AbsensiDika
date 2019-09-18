@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_10"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorfontsiap"
+            app:contentInsetStartWithNavigation="0dp"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/typer_roboto_bold"
+                    android:text="Kategori *"
+                    android:textColor="@color/colorfontsiap"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    style="@style/SpinnerThemeSiapp"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:popupBackground="@android:color/white"
+                    android:textColor="@color/colorfontsiap"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/typer_roboto_bold"
+                    android:text="Tanggal *"
+                    android:textColor="@color/colorfontsiap"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/txtTanggal"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/txt_area_siapp"
+                    android:drawableRight="@drawable/ic_event"
+                    android:ems="10"
+                    android:fontFamily="@font/typer_roboto_regular"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="2dp"
+
+                    android:textColor="@color/colorfontsiap"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/typer_roboto_bold"
+                    android:text="Perihal *"
+                    android:textColor="@color/colorfontsiap"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/txtPerihal"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/txt_area_siapp"
+                    android:ems="10"
+                    android:fontFamily="@font/typer_roboto_regular"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="2dp"
+
+                    android:textColor="@color/colorfontsiap"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/typer_roboto_bold"
+                    android:text="Keterangan *"
+                    android:textColor="@color/colorfontsiap"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/txtKeterangan"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="@drawable/txt_area_siapp"
+                    android:ems="10"
+                    android:fontFamily="@font/typer_roboto_regular"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"
+                    android:layoutDirection="ltr"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="2dp"
+
+                    android:textColor="@color/colorfontsiap"
+                    android:textSize="15sp"
+                    android:typeface="normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/typer_roboto_bold"
+                    android:text="Lampiran *"
+                    android:textColor="@color/colorfontsiap"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/img1"
+                        android:layout_width="60dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/photo_camera" />
+
+                    <ImageButton
+                        android:id="@+id/img2"
+                        android:layout_width="60dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/photo_camera" />
+
+                    <ImageButton
+                        android:id="@+id/img3"
+                        android:layout_width="60dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/photo_camera" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/typer_roboto_bold"
+                    android:text="*) Wajib diisi, lampiran foto minimal 1 lampiran"
+                    android:textColor="@color/colorfontsiap"
+                    android:textSize="11sp" />
+
+                <Button
+                    android:id="@+id/btnKirim"
+                    style="@style/Button.Accent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:backgroundTint="@color/colorfontsiap"
+                    android:gravity="top"
+                    android:lineSpacingExtra="10sp"
+                    android:text="KIRIM"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.Subhead.Bold"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:theme="@style/Button.Accent" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <FrameLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/bottom_sheet_behavior" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

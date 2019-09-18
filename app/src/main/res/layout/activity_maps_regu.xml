@@ -1,0 +1,277 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:sothree="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:sothree="http://schemas.android.com/tools"
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background"
+
+                android:gravity="top|center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/tap_action_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="80dp"
+                        android:background="@color/colorfontsiapblue"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/typer_roboto_regular"
+                        android:text="DETAIL REGU"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.Subhead.Bold"
+                        android:textColor="@color/colorfontsiapblue"
+                        android:textSize="24sp"
+                        android:typeface="normal" />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:srcCompat="@drawable/eagle_icon" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="@dimen/spacing_large"
+                    android:background="@android:color/white"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/spacing_large"
+                        android:paddingRight="@dimen/spacing_large"
+                        android:paddingBottom="@dimen/spacing_large">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/spacing_xmlarge"
+                            android:orientation="horizontal">
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/typer_roboto_regular"
+                                android:text="Danru Regu"
+                                android:textColor="@color/colorfontsiapblue"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:typeface="normal" />
+
+                            <View
+                                android:layout_width="@dimen/spacing_middle"
+                                android:layout_height="0dp" />
+
+                            <TextView
+                                android:id="@+id/txtDanruRegu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/typer_roboto_regular"
+                                android:gravity="center_vertical|center"
+                                android:minHeight="@dimen/spacing_xmlarge"
+                                android:paddingRight="20dp"
+                                android:text="Danru Budi1 "
+                                android:textAlignment="textEnd"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/spacing_xmlarge"
+                            android:orientation="horizontal">
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/typer_roboto_regular"
+                                android:text="Project"
+                                android:textColor="@color/colorfontsiapblue"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:typeface="normal" />
+
+                            <View
+                                android:layout_width="@dimen/spacing_middle"
+                                android:layout_height="0dp" />
+
+                            <TextView
+                                android:id="@+id/txtProject"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/typer_roboto_regular"
+                                android:gravity="center_vertical|center"
+                                android:minHeight="@dimen/spacing_xmlarge"
+                                android:paddingRight="20dp"
+                                android:text="Projek 1 (KLN1-KCB1-JN1)"
+                                android:textAlignment="textEnd"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                android:textColor="@android:color/black"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/spacing_xmlarge"
+                            android:orientation="horizontal">
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/typer_roboto_regular"
+                                android:text="Group"
+                                android:textColor="@color/colorfontsiapblue"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:typeface="normal" />
+
+                            <View
+                                android:layout_width="@dimen/spacing_middle"
+                                android:layout_height="0dp" />
+
+                            <TextView
+                                android:id="@+id/txtGroup"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/typer_roboto_regular"
+                                android:gravity="center_vertical|center"
+                                android:minHeight="@dimen/spacing_xmlarge"
+                                android:paddingRight="20dp"
+                                android:text="Regu 1 (PJK1-KLN1-KCB1-JN1)"
+                                android:textAlignment="textEnd"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                android:textColor="@android:color/black"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/spacing_xmlarge"
+                            android:orientation="horizontal">
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/typer_roboto_regular"
+                                android:text="Shift"
+                                android:textColor="@color/colorfontsiapblue"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:typeface="normal" />
+
+                            <View
+                                android:layout_width="@dimen/spacing_middle"
+                                android:layout_height="0dp" />
+
+                            <TextView
+                                android:id="@+id/txtShift"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/typer_roboto_regular"
+                                android:gravity="center_vertical|center"
+                                android:minHeight="@dimen/spacing_xmlarge"
+                                android:paddingRight="20dp"
+                                android:text="Pagi [06:00 - 18:00]"
+                                android:textAlignment="textEnd"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="60dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnMaps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_purple_a400"
+                android:backgroundTint="@color/colorfontsiapblue"
+                android:text="MAPS"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+        </FrameLayout>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

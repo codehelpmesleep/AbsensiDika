@@ -1,0 +1,45 @@
+<resources>
+
+    <string name="ok">OK</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="permission_camera">This app needs camera permission to scan barcode</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
+    <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
+    <string name="title_activity_main">Barcode Reader </string>
+    <string name="barcode_header">Click &quot;Read Barcode&quot; to read a barcode</string>
+    <string name="read_barcode">Read Barcode</string>
+    <string name="auto_focus">Auto Focus</string>
+    <string name="use_flash">Use Flash</string>
+    <string name="barcode_success">Barcode read successfully</string>
+    <string name="barcode_failure">No barcode captured</string>
+    <string name="barcode_error">"Error reading barcode: %1$s"</string>
+    <string name="grant">GRANT</string>
+    <string name="cancel">CANCEL</string>
+
+    <string name="app_name">SIAPP</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+       AIzaSyC81VOhMO0wfJbA6DIYXzKFq30CFwuGYbY
+    </string>
+
+    <string name="step_of">Step %1$d of %2$d</string>
+    <string name="section_format">Section : %1$d</string>
+
+    <string name="about_text">The best android implementation of material UI components. This app implemented based on Google Design Guidelines.
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_splash_screen">SIAPP</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="token">db2tlCennF8:APA91bE1YGlIM8-f8UizSumJlJORlI4nITZ_p2g8mtRMXHmy9dYYLcDjzs3EUbglMQ25ritk62C4glDJOhFfqtAeUhBUfWSgWCPXbI0D0xK0vsKXzM_ZvVK1aOa24UFY65Xrh4fNcbH</string>
+    <string name="server_key">AAAAJ07YFhY:APA91bH-I1yPdQ7V9Z5RBbDcJgnbCady6itTPkFnqO09zRJ8o_27q4SSQVZmzm5lQTFLSce5OKOErQRrF8E456QvBofoWk0Qya2yMR_pyywhxWpHls1AR08yX9JfL7RfyqFJyx-RrX7i</string>
+
+
+</resources>

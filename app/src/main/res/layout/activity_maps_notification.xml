@@ -1,0 +1,83 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:sothree="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                sothree:context=".Panic.Maps.MapsActivity" />
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="70dp"
+                android:src="@drawable/ic_my_location_black_24dp"
+                app:backgroundTint="#ffffff"
+                app:elevation="6dp"
+                app:layout_anchor="@id/map"
+                app:layout_anchorGravity="bottom|right|end"
+                app:pressedTranslationZ="12dp">
+
+            </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+            <Button
+                android:id="@+id/btnPenting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/btn_purple_a400"
+                android:backgroundTint="@color/colorAccentDark"
+                android:drawableRight="@drawable/ic_phone"
+                android:fontFamily="@font/typer_roboto_bold"
+                android:paddingRight="20dp"
+                android:text="    DANRU REGU   "
+                android:textAlignment="textEnd"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_anchor="@id/map"
+                app:layout_anchorGravity="top" />
+
+            <Button
+                android:id="@+id/btnCall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/btn_purple_a400"
+                android:backgroundTint="@color/colorAccentDark"
+                android:drawableRight="@drawable/ic_phone"
+                android:fontFamily="@font/typer_roboto_bold"
+                android:paddingRight="20dp"
+                android:text="KEAMANAN"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_anchor="@id/map"
+                app:layout_anchorGravity="bottom" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </FrameLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

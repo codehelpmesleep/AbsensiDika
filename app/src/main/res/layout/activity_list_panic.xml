@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/headersiapp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/headerlogo" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-36dp"
+        android:scrollbars="none"
+        android:scrollingCache="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
+            android:gravity="center"
+            android:orientation="vertical">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="blocksDescendants"
+        android:gravity="center"
+        android:orientation="vertical">
+            <View
+                android:layout_width="0dp"
+                android:layout_height="35dp" />
+
+        <ImageButton
+            android:id="@+id/btnKeamanan"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_weight="1"
+
+            android:backgroundTint="@color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/panik_keamanan" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/typer_roboto_bold"
+                android:gravity="center"
+                android:text="KEAMANAN"
+                android:textColor="@color/colorfontsiap"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btnKebakaran"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/panik_kebakaran" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/typer_roboto_bold"
+                android:gravity="center"
+                android:text="KEBAKARAN"
+                android:textColor="@color/colorfontsiap"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btnMedic"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/panik_medispng" />
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/typer_roboto_bold"
+
+                    android:text="MEDIS"
+                    android:textColor="@color/colorfontsiap"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/spacing_smlarge"
+        android:layout_marginTop="@dimen/spacing_middle"
+        android:layout_marginRight="@dimen/spacing_smlarge"
+        android:layout_marginBottom="200dp"
+        android:clickable="true"
+        android:tint="@android:color/white"
+        app:backgroundTint="@color/red_500"
+        app:elevation="0dp"
+        app:fabSize="mini"
+        app:rippleColor="@android:color/black"
+        app:srcCompat="@drawable/ic_apps" />
+
+</RelativeLayout>
+
+
+
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
