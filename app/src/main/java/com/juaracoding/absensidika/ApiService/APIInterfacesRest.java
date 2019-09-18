@@ -7,6 +7,8 @@ package com.juaracoding.absensidika.ApiService;
 
 
 
+import com.juaracoding.absensidika.Login.model.ModelLogin;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +25,15 @@ import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
- * Created by anupamchugh on 09/01/17.
+ * Created by dewabrata on 18/09/2019.
  */
 
 public interface APIInterfacesRest {
 
 
+    @FormUrlEncoded
+    @POST("api/user/login")
+    Call<ModelLogin> getLogin(@Field("username") String username, @Field("password") String password);
 
 
 

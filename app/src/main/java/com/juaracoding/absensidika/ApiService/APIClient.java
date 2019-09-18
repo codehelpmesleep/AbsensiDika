@@ -28,7 +28,7 @@ public class APIClient {
 
 
 
-    public static Retrofit getClientWithApi(String api) {
+    public static Retrofit getClientWithApi() {
 
         Interceptor interceptor = new Interceptor() {
             @Override
