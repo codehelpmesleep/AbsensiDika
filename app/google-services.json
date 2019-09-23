@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "733714925813",
+    "firebase_url": "https://absensidika.firebaseio.com",
+    "project_id": "absensidika",
+    "storage_bucket": "absensidika.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733714925813:android:3bc0e4df6a65a967d9ddbc",
+        "android_client_info": {
+          "package_name": "com.juaracoding.absensidika"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "733714925813-jg10qvhi2e6iqnsqnsko2hbh5h1a9632.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.juaracoding.absensidika",
+            "certificate_hash": "a9e5c1b07b90e87ee40fc6c39d55423c9f5c646f"
+          }
+        },
+        {
+          "client_id": "733714925813-68o1npmvok7lf6s9ik836hf0prf9gqar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXqvMIDnFg6SckYB0WLcUhhnmTNUAZVDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "733714925813-68o1npmvok7lf6s9ik836hf0prf9gqar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
