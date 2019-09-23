@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.florent37.rxgps.RxGps;
-import com.google.firebase.database.DatabaseReference;
+
 import com.google.gson.Gson;
 import com.juaracoding.absensidika.ApiService.APIClient;
 import com.juaracoding.absensidika.ApiService.APIInterfacesRest;
