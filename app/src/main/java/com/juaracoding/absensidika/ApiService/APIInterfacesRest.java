@@ -8,6 +8,7 @@ package com.juaracoding.absensidika.ApiService;
 
 
 import com.juaracoding.absensidika.Login.model.ModelLogin;
+import com.juaracoding.absensidika.Utility.SaveModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,21 @@ public interface APIInterfacesRest {
 
 
 
+    @Multipart
+    @POST("api/absent_activity/add")
+    Call<SaveModel> absenPhoto(
+
+            @Part("user_id") RequestBody attend_for,
+            @Part("manager_id") RequestBody latitude,
+            @Part("status") RequestBody status,
+            @Part("date_time") RequestBody date_time,
+            @Part("lattiude") RequestBody lattiude,
+            @Part("longitude") RequestBody longitude,
+            @Part("address") RequestBody address,
+            @Part("absent_type") RequestBody absent_type,
+            @Part MultipartBody.Part picture
+
+    );
 
 
 

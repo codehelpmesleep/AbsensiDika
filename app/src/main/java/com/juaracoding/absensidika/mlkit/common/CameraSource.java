@@ -18,6 +18,9 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
@@ -31,6 +34,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
 
 import com.google.android.gms.common.images.Size;
+import com.juaracoding.absensidika.CheckIn.activity.DataFromGraphic;
 
 import java.io.IOException;
 import java.lang.Thread.State;
@@ -71,8 +75,10 @@ public class CameraSource {
   protected Activity activity;
 
   private Camera camera;
+  private Camera.PictureCallback mPicture;
 
   protected int facing = CAMERA_FACING_BACK;
+  private DataFromGraphic dataFromGraphic;
 
   /**
    * Rotation of the device, and thus the associated preview images captured from the device. See
@@ -125,10 +131,12 @@ public class CameraSource {
    */
   private final Map<byte[], ByteBuffer> bytesToByteBuffer = new IdentityHashMap<>();
 
-  public CameraSource(Activity activity, GraphicOverlay overlay) {
+  public CameraSource(Activity activity, GraphicOverlay overlay, DataFromGraphic dataFromGraphic) {
     this.activity = activity;
+    this.dataFromGraphic = dataFromGraphic;
     graphicOverlay = overlay;
     graphicOverlay.clear();
+
     processingRunnable = new FrameProcessingRunnable();
 
     if (Camera.getNumberOfCameras() == 1) {
@@ -138,10 +146,24 @@ public class CameraSource {
     }
   }
 
+
+
   // ==============================================================================================
   // Public
   // ==============================================================================================
 
+  /**Take Picture
+   *
+   *
+   */
+
+  public void takePicture(){
+    if (camera!=null){
+
+      camera.takePicture(null,null,mPicture);
+
+    }
+  }
   /** Stops the camera and releases the resources of the camera and underlying detector. */
   public void release() {
     synchronized (processorLock) {
@@ -197,10 +219,12 @@ public class CameraSource {
     camera.setPreviewDisplay(surfaceHolder);
     camera.startPreview();
 
+
     processingThread = new Thread(processingRunnable);
     processingRunnable.setActive(true);
     processingThread.start();
 
+    mPicture = getPictureCallback();
     usingSurfaceTexture = false;
     return this;
   }
@@ -335,7 +359,8 @@ public class CameraSource {
     camera.addCallbackBuffer(createPreviewBuffer(previewSize));
     camera.addCallbackBuffer(createPreviewBuffer(previewSize));
     camera.addCallbackBuffer(createPreviewBuffer(previewSize));
-
+    //add byd dewa
+    mPicture = getPictureCallback();
     return camera;
   }
 
@@ -735,4 +760,17 @@ public class CameraSource {
   private void cleanScreen() {
     graphicOverlay.clear();
   }
+
+  private Camera.PictureCallback getPictureCallback() {
+    Camera.PictureCallback picture = new Camera.PictureCallback() {
+      @Override
+      public void onPictureTaken(byte[] data, Camera camera) {
+       Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+       dataFromGraphic.takePicture(bitmap);
+
+      }
+    };
+    return picture;
+  }
+
 }
