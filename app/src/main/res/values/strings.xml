@@ -16,6 +16,7 @@
     <string name="barcode_error">"Error reading barcode: %1$s"</string>
     <string name="grant">GRANT</string>
     <string name="cancel">CANCEL</string>
+    <string name="selfie_confirm">Lanjutkan untuk mengirimkan data absensi.</string>
 
     <string name="app_name">ABSEN DIKA</string>
 

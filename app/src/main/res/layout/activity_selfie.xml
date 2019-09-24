@@ -64,9 +64,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="@color/blue_900"
+                android:background="@color/light_blue_300"
                 android:textColor="@color/mdtp_white"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 

@@ -8,6 +8,7 @@ package com.juaracoding.absensidika.ApiService;
 
 
 import com.juaracoding.absensidika.Login.model.ModelLogin;
+import com.juaracoding.absensidika.Permission.model.PermissionCategory;
 import com.juaracoding.absensidika.Utility.SaveModel;
 
 import java.util.ArrayList;
@@ -42,22 +43,42 @@ public interface APIInterfacesRest {
     @POST("api/absent_activity/add")
     Call<SaveModel> absenPhoto(
 
-            @Part("user_id") RequestBody attend_for,
-            @Part("manager_id") RequestBody latitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("manager_id") RequestBody manager_id,
             @Part("status") RequestBody status,
             @Part("date_time") RequestBody date_time,
             @Part("lattiude") RequestBody lattiude,
             @Part("longitude") RequestBody longitude,
             @Part("address") RequestBody address,
             @Part("absent_type") RequestBody absent_type,
+            @Part("qr_number") RequestBody qr_code,
             @Part MultipartBody.Part picture
 
     );
 
+    @GET("api/permission_category/all")
+    Call<PermissionCategory> getPermissionCategory();
 
+/*
+    @Multipart
+    @POST("api/permission_activity/add")
+    Call<SaveModel> sendPermission(
 
+            @Part("user_id") RequestBody user_id,
+            @Part("manager_id") RequestBody manager_id,
+            @Part("status") RequestBody status,
+            @Part("from_date") RequestBody from_date,
+            @Part("to_date") RequestBody to_date,
+            @Part("permission_id") RequestBody lattiude,
+            @Part("comment") RequestBody longitude,
+            @Part MultipartBody.Part picture1,
+            @Part MultipartBody.Part picture2,
+            @Part MultipartBody.Part picture3
 
-
+    );
+*/
+    @POST("api/permission_activity/add")
+    Call<SaveModel> sendPermission(@Body RequestBody file);
 
 //contoh
 /*

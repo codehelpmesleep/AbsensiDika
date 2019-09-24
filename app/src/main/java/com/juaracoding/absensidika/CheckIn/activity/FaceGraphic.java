@@ -89,12 +89,14 @@ public class FaceGraphic extends GraphicOverlay.Graphic  {
         float y = translateY(face.getBoundingBox().centerY());
         canvas.drawCircle(x, y - 4 * ID_Y_OFFSET, FACE_POSITION_RADIUS, facePositionPaint);
 
-   /*     canvas.drawText("id: " + face.getTrackingId(), x + ID_X_OFFSET, y - 3 * ID_Y_OFFSET, idPaint);
-        canvas.drawText(
+    // canvas.drawText("id: " + face.getTrackingId(), x + ID_X_OFFSET, y - 3 * ID_Y_OFFSET, idPaint);
+   /*     canvas.drawText(
                 "happiness: " + String.format("%.2f", face.getSmilingProbability()),
                 x + ID_X_OFFSET * 3,
                 y - 2 * ID_Y_OFFSET,
-                idPaint); */
+                idPaint);
+                */
+
 
 
         if (facing == CameraSource.CAMERA_FACING_FRONT) {
@@ -110,11 +112,11 @@ public class FaceGraphic extends GraphicOverlay.Graphic  {
                     idPaint);*/
 
 
-            canvas.drawText(
+    /*        canvas.drawText(
                     "face1: " + String.format("%.2f", face.getHeadEulerAngleY()),
                     x - ID_X_OFFSET  ,
                     y,
-                    idPaint);
+                    idPaint);*/
  /*
 
           canvas.drawText(
@@ -135,6 +137,12 @@ public class FaceGraphic extends GraphicOverlay.Graphic  {
                 dataFromGraphic.isFacingRight(false);
             }
 
+            if(face.getSmilingProbability()>0.8){
+                dataFromGraphic.isHappy(true);
+            }else{
+                dataFromGraphic.isHappy(false);
+            }
+
 
         } else {
          /*   canvas.drawText(
@@ -148,7 +156,7 @@ public class FaceGraphic extends GraphicOverlay.Graphic  {
                     y,
                     idPaint);*/
 
-            canvas.drawText(
+   /*         canvas.drawText(
                     "left eye: " + String.format("%.2f",face.getHeadEulerAngleY()),
                     x - ID_X_OFFSET,
                     y,
@@ -157,7 +165,7 @@ public class FaceGraphic extends GraphicOverlay.Graphic  {
                     "right eye: " + String.format("%.2f", face.getHeadEulerAngleZ()),
                     x + ID_X_OFFSET * 6,
                     y,
-                    idPaint);
+                    idPaint);*/
         }
 
         // Draws a bounding box around the face.
