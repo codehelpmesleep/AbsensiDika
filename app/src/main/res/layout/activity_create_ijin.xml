@@ -27,7 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true">
-
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -222,7 +224,13 @@
                     android:theme="@style/Button.Accent" />
 
             </LinearLayout>
+        </ScrollView>
         </androidx.core.widget.NestedScrollView>
+
+
+
+
+
 
 
     </com.google.android.material.appbar.AppBarLayout>
