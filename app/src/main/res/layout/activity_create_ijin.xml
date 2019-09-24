@@ -63,12 +63,37 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="3dp"
                     android:fontFamily="@font/typer_roboto_bold"
-                    android:text="Tanggal *"
+                    android:text="Tanggal dari *"
                     android:textColor="@color/colorfontsiap"
                     android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/txtTanggal"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/txt_area_siapp"
+                    android:drawableRight="@drawable/ic_event"
+                    android:ems="10"
+                    android:fontFamily="@font/typer_roboto_regular"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="2dp"
+
+                    android:textColor="@color/colorfontsiap"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/typer_roboto_bold"
+                    android:text="Tanggal sampai*"
+                    android:textColor="@color/colorfontsiap"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/txtTanggal2"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:background="@drawable/txt_area_siapp"
