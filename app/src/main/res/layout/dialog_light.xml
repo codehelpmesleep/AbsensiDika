@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/typer_roboto_bold"
-            android:text="DATANG"
+            android:text="CHECK IN"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.Medium.Bold"
             android:textSize="24sp"

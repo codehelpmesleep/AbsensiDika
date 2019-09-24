@@ -35,7 +35,9 @@ import com.juaracoding.absensidika.ApiService.APIClient;
 import com.juaracoding.absensidika.ApiService.APIInterfacesRest;
 import com.juaracoding.absensidika.Application.AppController;
 import com.juaracoding.absensidika.R;
+
 import com.juaracoding.absensidika.Utility.AppUtil;
+import com.juaracoding.absensidika.Utility.ImageUtil;
 import com.juaracoding.absensidika.Utility.SaveModel;
 import com.juaracoding.absensidika.Utility.Tools;
 import com.juaracoding.absensidika.mlkit.common.CameraSource;
@@ -296,6 +298,7 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
             if (btnCommand.getText().toString().equalsIgnoreCase("HADAP KIRI")) {
                 isStartScanning = false;
                 btnCommand.setText("OK");
+                btnCommand.setBackgroundColor(getResources().getColor(R.color.green_400));
                 createVerification();
             }
         }
@@ -307,6 +310,19 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
             if (btnCommand.getText().toString().equalsIgnoreCase("HADAP KANAN")) {
                 isStartScanning = false;
                 btnCommand.setText("OK");
+                btnCommand.setBackgroundColor(getResources().getColor(R.color.green_400));
+                createVerification();
+            }
+        }
+    }
+
+    @Override
+    public void isHappy(Boolean happy) {
+        if (happy && isStartScanning) {
+            if (btnCommand.getText().toString().equalsIgnoreCase("TERSENYUM")) {
+                isStartScanning = false;
+                btnCommand.setText("OK");
+                btnCommand.setBackgroundColor(getResources().getColor(R.color.green_400));
                 createVerification();
             }
         }
@@ -327,6 +343,7 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
         listVerification = new ArrayList<String>();
         listVerification.add("HADAP KANAN");
         listVerification.add("HADAP KIRI");
+        listVerification.add("TERSENYUM");
 
         return listVerification;
 
@@ -342,9 +359,10 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
                 @Override
                 public void run() {
                     btnCommand.setText(listVerification.get(manyTimeVerification));
+                    btnCommand.setBackgroundColor(getResources().getColor(R.color.blue_800));
                     isStartScanning = true;
                 }
-            }, 2000L);
+            }, 1000L);
         } else {
             isStartScanning = false;
             final Handler handler = new Handler();
@@ -352,9 +370,10 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
                 @Override
                 public void run() {
                     btnCommand.setText("Selfie OK, Kirim Absent?");
+                    btnCommand.setBackgroundColor(getResources().getColor(R.color.blue_grey_500));
                     btnCommand.setEnabled(true);
                 }
-            }, 2000L);
+            }, 1000L);
 
 
         }
@@ -379,6 +398,7 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
             @Override
             public void onClick(View v) {
 
+                dialog.dismiss();
                 sendData(rotateImage(bitmap, -90));
 
             }
@@ -401,6 +421,7 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
 
     APIInterfacesRest apiInterface;
 
+    String jam ="";
 
     private void sendData(Bitmap bitmap) {
 
@@ -410,21 +431,23 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
 
         RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"), compressCapture(bImg1, 900));
         MultipartBody.Part bodyImg1 =
-                MultipartBody.Part.createFormData("picture", file.getName(), requestFile1);
+                MultipartBody.Part.createFormData("picture", file.getName()+".jpg", requestFile1);
 
 
         apiInterface = APIClient.getClientWithApi().create(APIInterfacesRest.class);
 
+        jam = AppUtil.Now();
 
         Call<SaveModel> absentAdd = apiInterface.absenPhoto(
                 toRequestBody(AppUtil.replaceNull("Userid")),
                 toRequestBody(AppUtil.replaceNull("ManagerID")),
                 toRequestBody(AppUtil.replaceNull("open")),
-                toRequestBody(AppUtil.replaceNull(AppUtil.Now())),
+                toRequestBody(AppUtil.replaceNull(jam)),
                 toRequestBody(AppUtil.replaceNull(latitude)),
                 toRequestBody(AppUtil.replaceNull(longitude)),
                 toRequestBody(AppUtil.replaceNull("address")),
                 toRequestBody(AppUtil.replaceNull("selfie")),
+                toRequestBody(AppUtil.replaceNull("")),
                 bodyImg1);
 
         absentAdd.enqueue(new Callback<SaveModel>() {
@@ -438,7 +461,7 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
                 if (login != null) {
 
                     if (login.getStatus()) {
-                        showCustomDialogEnd();
+                        showCustomDialogEnd(file.getName()+".jpg",jam);
 
                     } else {
                         progressDialog.dismiss();
@@ -534,7 +557,7 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
                 .observeOn(AndroidSchedulers.mainThread())
 
                 .subscribe(location -> {
-                    Toast.makeText(SelfieActivity.this, location.getLatitude() + ", " + location.getLongitude(), Toast.LENGTH_LONG).show();
+                   // Toast.makeText(SelfieActivity.this, location.getLatitude() + ", " + location.getLongitude(), Toast.LENGTH_LONG).show();
                     latitude = location.getLatitude() + "";
                     longitude = location.getLongitude() + "";
                 }, throwable -> {
@@ -548,7 +571,7 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
     }
 
 
-    private void showCustomDialogEnd() {
+    private void showCustomDialogEnd(String filename, String jam) {
         final Dialog dialog = new Dialog(SelfieActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
         dialog.setContentView(R.layout.dialog_light);
@@ -567,14 +590,16 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
             ((TextView) dialog.findViewById(R.id.txtJam)).setText(txtJamPulang.getText().toString());
         }
 */
+        ((TextView) dialog.findViewById(R.id.txtJam)).setText(jam);
+        ((TextView) dialog.findViewById(R.id.txtTanggal)).setText(AppUtil.NowX());
         ((TextView) dialog.findViewById(R.id.txtKeterangan)).setText("ABSEN FOTO BERHASIL");
 
-        //   ((TextView) dialog.findViewById(R.id.txtPilihAbsen)).setText(login.getStatusDetail());
+        ((TextView) dialog.findViewById(R.id.txtPilihAbsen)).setText("DATANG");
 
-    //    ((TextView) dialog.findViewById(R.id.txtName)).setText(AppController.getUserProfile().getSuccess().getUser().getPersonnel().getCompleteName());
+        ((TextView) dialog.findViewById(R.id.txtName)).setText("NAMA");
 
 
-        //ImageUtil.displayImage(((ImageView) dialog.findViewById(R.id.imgProfile)),AppController.getUserProfile().getSuccess().getUser().getPersonnel().getPhotoUrl(),null);
+        ImageUtil.displayImage(((ImageView) dialog.findViewById(R.id.imgProfile)),com.juaracoding.absensidika.ApiService.AppUtil.BASE_URL +"uploads/absent_activity/"+filename,null);
 
 
         ((AppCompatButton) dialog.findViewById(R.id.btnOk)).setOnClickListener(new View.OnClickListener() {

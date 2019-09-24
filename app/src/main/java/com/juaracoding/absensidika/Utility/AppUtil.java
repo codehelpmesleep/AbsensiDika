@@ -138,7 +138,7 @@ public class AppUtil {
     }
     public static String NowX(){
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("E, MMM dd yyyy");
 
         return sdf.format(calendar.getTime());
     }

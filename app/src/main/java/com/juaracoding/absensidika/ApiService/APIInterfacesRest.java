@@ -42,14 +42,15 @@ public interface APIInterfacesRest {
     @POST("api/absent_activity/add")
     Call<SaveModel> absenPhoto(
 
-            @Part("user_id") RequestBody attend_for,
-            @Part("manager_id") RequestBody latitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("manager_id") RequestBody manager_id,
             @Part("status") RequestBody status,
             @Part("date_time") RequestBody date_time,
             @Part("lattiude") RequestBody lattiude,
             @Part("longitude") RequestBody longitude,
             @Part("address") RequestBody address,
             @Part("absent_type") RequestBody absent_type,
+            @Part("qr_number") RequestBody qr_code,
             @Part MultipartBody.Part picture
 
     );
