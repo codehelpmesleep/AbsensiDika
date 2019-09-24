@@ -241,7 +241,7 @@ public class CreatePermission extends AppCompatActivity {
                         calendar.set(Calendar.MONTH, monthOfYear);
                         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                         long date_ship_millis = calendar.getTimeInMillis();
-                        ((TextView) findViewById(R.id.txtTanggal)).setText(Tools.getFormattedDateSiapp3(date_ship_millis));
+                        ((TextView) findViewById(R.id.txtTanggal2)).setText(Tools.getFormattedDateSiapp3(date_ship_millis));
                         tanggal2 = Tools.getFormattedDateSiapp2(date_ship_millis);
                     }
                 },
