@@ -7,29 +7,26 @@
         android:name=".Application.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:usesCleartextTraffic="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".CheckIn.activity.SelfieActivity">
-
-        </activity>
-
-        <activity android:name=".Login.activity.LoginActivity">
-
-        </activity>
-        <activity android:name=".Permission.activity.CreatePermission">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Permission.activity.PermissionApproval">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".CheckIn.activity.QRActivity">
 
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".CheckIn.activity.SelfieActivity"></activity>
+        <activity android:name=".Login.activity.LoginActivity"></activity>
+        <activity android:name=".Permission.activity.CreatePermission">
+
+        </activity>
+        <activity android:name=".CheckIn.activity.QRActivity"></activity>
+        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -38,14 +35,14 @@
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode,face,ocr,ica" />
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <dist:module dist:instant="true" />
 

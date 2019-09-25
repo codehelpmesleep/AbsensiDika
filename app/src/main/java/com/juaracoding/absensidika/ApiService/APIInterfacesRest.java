@@ -8,7 +8,9 @@ package com.juaracoding.absensidika.ApiService;
 
 
 import com.juaracoding.absensidika.Login.model.ModelLogin;
+import com.juaracoding.absensidika.Permission.activity.PermissionApproval;
 import com.juaracoding.absensidika.Permission.model.PermissionCategory;
+import com.juaracoding.absensidika.Permission.model.approval.PermissionApprovalModel;
 import com.juaracoding.absensidika.Utility.SaveModel;
 
 import java.util.ArrayList;
@@ -58,6 +60,9 @@ public interface APIInterfacesRest {
 
     @GET("api/permission_category/all")
     Call<PermissionCategory> getPermissionCategory();
+
+    @GET("api/permission_activity/all")
+    Call<PermissionApprovalModel> getApprovalList(@Query("field") String field, @Query("filter") String filter);
 
 /*
     @Multipart

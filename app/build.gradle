@@ -90,8 +90,6 @@ dependencies {
     //firebase push
 
 
-
-
     implementation 'com.github.safetysystemtechnology:location-tracker-background:v1.3'
 
     implementation 'com.airbnb.android:lottie:2.7.0'
