@@ -115,6 +115,7 @@ dependencies {
 
     implementation 'com.github.nikartm:fit-button:1.2.1'
 
-
+    //library QRGenearator
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
 }
 apply plugin: 'com.google.gms.google-services'
