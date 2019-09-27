@@ -36,7 +36,7 @@
     <!-- Background -->
     <item>
         <shape>
-            <solid android:color="@color/headersiapp" />
+            <solid android:color="@color/light_blue_300" />
             
         </shape>
     </item>

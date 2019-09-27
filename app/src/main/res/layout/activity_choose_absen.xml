@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/radiussiapp"
+        android:elevation="3dp">
+
+
+
+
+        <LinearLayout
+            android:id="@+id/btnMenuAtas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="200dp"
+                android:layout_height="65dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/dikalogo" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.github.nikartm.button.FitButton
+            android:id="@+id/btnQRCode"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="16dp"
+            android:gravity="center_vertical"
+
+            app:fb_backgroundColor="#143a69"
+            app:fb_borderColor="#d1a90c"
+            app:fb_borderWidth="@dimen/_2sdp"
+            app:fb_cornerRadius="12dp"
+            app:fb_divColor="#fff"
+            app:fb_divHeight="35dp"
+            app:fb_divMarginStart="@dimen/_12sdp"
+            app:fb_divWidth="1dp"
+            app:fb_icon="@drawable/tab_absen_qr"
+            app:fb_iconColor="#fff"
+            app:fb_iconMarginEnd="2dp"
+            app:fb_iconMarginStart="@dimen/_12sdp"
+            app:fb_iconPosition="left"
+            app:fb_rippleColor="#BBDEFB"
+            app:fb_shape="rectangle"
+            app:fb_text="QR CODE"
+            app:fb_textColor="#fff"
+            app:fb_textPaddingStart="10dp"
+
+            app:fb_textSize="@dimen/_24sdp" />
+
+        <com.github.nikartm.button.FitButton
+            android:id="@+id/btnSelfie"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="16dp"
+            android:gravity="center_vertical"
+
+            app:fb_backgroundColor="#143a69"
+            app:fb_borderColor="#d1a90c"
+            app:fb_borderWidth="@dimen/_2sdp"
+            app:fb_cornerRadius="12dp"
+            app:fb_divColor="#fff"
+            app:fb_divHeight="35dp"
+            app:fb_divMarginStart="@dimen/_12sdp"
+            app:fb_divWidth="1dp"
+            app:fb_icon="@drawable/ic_face"
+            app:fb_iconColor="#fff"
+            app:fb_iconMarginEnd="2dp"
+            app:fb_iconMarginStart="@dimen/_12sdp"
+            app:fb_iconPosition="left"
+            app:fb_rippleColor="#BBDEFB"
+            app:fb_shape="rectangle"
+            app:fb_text="SELFIE"
+            app:fb_textColor="#fff"
+            app:fb_textPaddingStart="10dp"
+
+            app:fb_textSize="@dimen/_24sdp" />
+    </LinearLayout>
+
+
+</LinearLayout>

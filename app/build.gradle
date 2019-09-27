@@ -113,6 +113,8 @@ dependencies {
     // AutoML model
     implementation 'com.google.firebase:firebase-ml-vision-automl:18.0.1'
 
+    implementation 'com.github.nikartm:fit-button:1.2.1'
+
 
 }
 apply plugin: 'com.google.gms.google-services'
