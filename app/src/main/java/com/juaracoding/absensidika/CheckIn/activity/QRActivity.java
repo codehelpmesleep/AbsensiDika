@@ -33,12 +33,14 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.juaracoding.absensidika.ApiService.APIClient;
 import com.juaracoding.absensidika.ApiService.APIInterfacesRest;
+import com.juaracoding.absensidika.CheckIn.activity.model.QrModel;
 import com.juaracoding.absensidika.R;
 import com.juaracoding.absensidika.Utility.AppUtil;
 import com.juaracoding.absensidika.Utility.ImageUtil;
 import com.juaracoding.absensidika.Utility.SaveModel;
 import com.labters.lottiealertdialoglibrary.DialogTypes;
 import com.labters.lottiealertdialoglibrary.LottieAlertDialog;
+import com.wdullaer.materialdatetimepicker.time.Timepoint;
 
 
 import org.json.JSONException;
@@ -154,7 +156,8 @@ public class QRActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            showCustomDialog( barcodes.valueAt(0).displayValue);
+                            getQRdata( barcodes.valueAt(0).displayValue);
+
                         }
                     });
 
@@ -374,6 +377,82 @@ public class QRActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SaveModel> call, Throwable t) {
+
+                progressDialog.dismiss();
+                Toast.makeText(QRActivity.this, "Maaf koneksi bermasalah", Toast.LENGTH_LONG).show();
+                call.cancel();
+            }
+        });
+
+    }
+
+
+
+
+    private void getQRdata(String qr) {
+
+        progressDialog.show();
+
+
+        apiInterface = APIClient.getClientWithApi().create(APIInterfacesRest.class);
+
+
+
+        Call<QrModel> absentAdd = apiInterface.getQRList("qr_number",qr);
+
+        absentAdd.enqueue(new Callback<QrModel>() {
+            @Override
+            public void onResponse(Call<QrModel> call, Response<QrModel> response) {
+
+                progressDialog.dismiss();
+
+                QrModel login = response.body();
+
+                if (login != null) {
+
+                    if(login.getData().getQrCodeManager() != null) {
+                        if (login.getData().getQrCodeManager().size() > 0) {
+                            if (login.getData().getQrCodeManager().get(0).getQrNumber().equalsIgnoreCase(qr)) {
+                                showCustomDialog(login.getData().getQrCodeManager().get(0).getQrNumber());
+                            } else {
+                                Toast.makeText(QRActivity.this, "QR Tidak Dikenali", Toast.LENGTH_LONG).show();
+                                finish();
+                            }
+                        } else {
+                            Toast.makeText(QRActivity.this, "QR Tidak Dikenali", Toast.LENGTH_LONG).show();
+                            finish();
+                        }
+                    } else {
+                        Toast.makeText(QRActivity.this, "QR Tidak Dikenali", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+
+                } else {
+
+                    progressDialog.dismiss();
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        //     Toast.makeText(ShoppingProductGrid.this, jObjError.getString("message"), Toast.LENGTH_LONG).show();
+                        String error = jObjError.get("status_detail").toString();
+                        Toast.makeText(QRActivity.this, error, Toast.LENGTH_LONG).show();
+
+                    } catch (Exception e) {
+                        try {
+                            progressDialog.dismiss();
+                            Toast.makeText(QRActivity.this, "Send Failed, " + response.errorBody().string(), Toast.LENGTH_LONG).show();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+
+                        //    Toast.makeText(ShoppingProductGrid.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<QrModel> call, Throwable t) {
 
                 progressDialog.dismiss();
                 Toast.makeText(QRActivity.this, "Maaf koneksi bermasalah", Toast.LENGTH_LONG).show();

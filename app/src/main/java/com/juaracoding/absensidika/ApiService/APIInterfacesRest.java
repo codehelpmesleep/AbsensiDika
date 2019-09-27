@@ -7,6 +7,7 @@ package com.juaracoding.absensidika.ApiService;
 
 
 
+import com.juaracoding.absensidika.CheckIn.activity.model.QrModel;
 import com.juaracoding.absensidika.Login.model.ModelLogin;
 import com.juaracoding.absensidika.Permission.activity.PermissionApproval;
 import com.juaracoding.absensidika.Permission.model.PermissionCategory;
@@ -63,6 +64,9 @@ public interface APIInterfacesRest {
 
     @GET("api/permission_activity/all")
     Call<PermissionApprovalModel> getApprovalList(@Query("field") String field, @Query("filter") String filter);
+
+    @GET("api/qr_code_manager/all")
+    Call<QrModel> getQRList(@Query("field") String field, @Query("filter") String filter);
 
 /*
     @Multipart
