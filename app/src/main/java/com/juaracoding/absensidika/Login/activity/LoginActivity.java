@@ -14,7 +14,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +33,7 @@ import com.juaracoding.absensidika.ApiService.APIInterfacesRest;
 import com.juaracoding.absensidika.ApiService.AppUtil;
 import com.juaracoding.absensidika.Application.AppController;
 import com.juaracoding.absensidika.Login.model.ModelLogin;
+import com.juaracoding.absensidika.MainMenu.activity.MainMenu;
 import com.juaracoding.absensidika.R;
 
 import java.io.BufferedReader;
@@ -52,6 +56,11 @@ public class LoginActivity extends AppCompatActivity {
     TextView btnBantuan, lupaPassword;
     private ImageView image;
     private AppCompatCheckBox chkIngat;
+    private final String TAG="Test3DRotateActivity";
+
+
+    private Rotate3dAnimation rotation;
+    private StartNextRotate startNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,11 +115,53 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
 
-
+                startRotation(0,360);
                 getData();
 
             }
         });
+    }
+
+    private void startRotation(float start, float end) {
+        // Calculating center point
+        final float centerX = image.getWidth() / 2.0f;
+        final float centerY = image.getHeight() / 2.0f;
+        Log.d(TAG, "centerX="+centerX+", centerY="+centerY);
+        // Create a new 3D rotation with the supplied parameter
+        // The animation listener is used to trigger the next animation
+        //final Rotate3dAnimation rotation =new Rotate3dAnimation(start, end, centerX, centerY, 310.0f, true);
+        //Z axis is scaled to 0
+        rotation =new Rotate3dAnimation(start, end, centerX, centerY, 0f, true);
+        rotation.setDuration(2000);
+        rotation.setFillAfter(true);
+        //rotation.setInterpolator(new AccelerateInterpolator());
+        //Uniform rotation
+        rotation.setInterpolator(new LinearInterpolator());
+        //Monitor settings
+        startNext = new StartNextRotate();
+
+        rotation.setAnimationListener(startNext);
+        image.startAnimation(rotation);
+    }
+
+    private class StartNextRotate implements Animation.AnimationListener {
+
+        public void onAnimationEnd(Animation animation) {
+            // TODO Auto-generated method stub
+            Log.d(TAG, "onAnimationEnd......");
+            // image.startAnimation(rotation);
+        }
+
+        public void onAnimationRepeat(Animation animation) {
+            // TODO Auto-generated method stub
+
+        }
+
+        public void onAnimationStart(Animation animation) {
+            // TODO Auto-generated method stub
+
+        }
+
     }
 
 
@@ -187,7 +238,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ModelLogin> call, Response<ModelLogin> response) {
                 // progress_bar.setVisibility(View.GONE);
-
+                image.clearAnimation();
+                rotation.cancel();
                 login = response.body();
 
                 if (login != null) {
@@ -195,13 +247,18 @@ public class LoginActivity extends AppCompatActivity {
                     if (login.getStatus()) {
 
 
-                        Toast.makeText(LoginActivity.this, "Login Sukses", Toast.LENGTH_LONG).show();
+                        AppUtil.setSetting(LoginActivity.this,"isLogin","1");
+                        startActivity(new Intent(LoginActivity.this, MainMenu.class));
+                        finish();
 
 
                     }
 
 
                 } else {
+
+                    image.clearAnimation();
+                    rotation.cancel();
                     progress_bar.setVisibility(View.GONE);
 
 
@@ -227,7 +284,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ModelLogin> call, Throwable t) {
                 progress_bar.setVisibility(View.GONE);
-
+                image.clearAnimation();
+                rotation.cancel();
                 Toast.makeText(getApplicationContext(), "Maaf koneksi bermasalah", Toast.LENGTH_LONG).show();
                 call.cancel();
             }

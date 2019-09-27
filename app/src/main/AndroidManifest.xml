@@ -12,20 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Permission.activity.PermissionApproval">
+        <activity android:name=".CheckIn.activity.ChooseAbsen"></activity>
+        <activity
+            android:name=".Login.activity.SplashScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_splash_screen"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullscreenTheme"></activity>
+        <activity android:name=".MainMenu.activity.MainMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".CheckIn.activity.SelfieActivity"></activity>
-        <activity android:name=".Login.activity.LoginActivity"></activity>
-        <activity android:name=".Permission.activity.CreatePermission">
-
-        </activity>
-        <activity android:name=".CheckIn.activity.QRActivity"></activity>
+        <activity android:name=".Permission.activity.PermissionApproval"></activity>
+        <activity android:name=".CheckIn.activity.SelfieActivity" />
+        <activity android:name=".Login.activity.LoginActivity" />
+        <activity android:name=".Permission.activity.CreatePermission"></activity>
+        <activity android:name=".CheckIn.activity.QRActivity" />
         <activity android:name=".MainActivity" />
 
         <meta-data
@@ -35,14 +40,14 @@
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode,face,ocr,ica" />
     </application>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <dist:module dist:instant="true" />
 
