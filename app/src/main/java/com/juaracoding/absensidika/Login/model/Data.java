@@ -46,10 +46,10 @@ public class Data implements Serializable, Parcelable
     private Object forgotExp;
     @SerializedName("remember_time")
     @Expose
-    private Object rememberTime;
+    private String rememberTime;
     @SerializedName("remember_exp")
     @Expose
-    private Object rememberExp;
+    private String rememberExp;
     @SerializedName("verification_code")
     @Expose
     private Object verificationCode;
@@ -59,11 +59,11 @@ public class Data implements Serializable, Parcelable
     @SerializedName("ip_address")
     @Expose
     private String ipAddress;
-    public final static Creator<Data> CREATOR = new Creator<Data>() {
+    public final static Parcelable.Creator<Data> CREATOR = new Creator<Data>() {
 
 
         @SuppressWarnings({
-            "unchecked"
+                "unchecked"
         })
         public Data createFromParcel(Parcel in) {
             return new Data(in);
@@ -74,8 +74,8 @@ public class Data implements Serializable, Parcelable
         }
 
     }
-    ;
-    private final static long serialVersionUID = -8412705230745726442L;
+            ;
+    private final static long serialVersionUID = -1844366545395643076L;
 
     protected Data(Parcel in) {
         this.id = ((String) in.readValue((String.class.getClassLoader())));
@@ -89,8 +89,8 @@ public class Data implements Serializable, Parcelable
         this.lastActivity = ((String) in.readValue((String.class.getClassLoader())));
         this.dateCreated = ((String) in.readValue((String.class.getClassLoader())));
         this.forgotExp = ((Object) in.readValue((Object.class.getClassLoader())));
-        this.rememberTime = ((Object) in.readValue((Object.class.getClassLoader())));
-        this.rememberExp = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.rememberTime = ((String) in.readValue((String.class.getClassLoader())));
+        this.rememberExp = ((String) in.readValue((String.class.getClassLoader())));
         this.verificationCode = ((Object) in.readValue((Object.class.getClassLoader())));
         this.topSecret = ((Object) in.readValue((Object.class.getClassLoader())));
         this.ipAddress = ((String) in.readValue((String.class.getClassLoader())));
@@ -187,19 +187,19 @@ public class Data implements Serializable, Parcelable
         this.forgotExp = forgotExp;
     }
 
-    public Object getRememberTime() {
+    public String getRememberTime() {
         return rememberTime;
     }
 
-    public void setRememberTime(Object rememberTime) {
+    public void setRememberTime(String rememberTime) {
         this.rememberTime = rememberTime;
     }
 
-    public Object getRememberExp() {
+    public String getRememberExp() {
         return rememberExp;
     }
 
-    public void setRememberExp(Object rememberExp) {
+    public void setRememberExp(String rememberExp) {
         this.rememberExp = rememberExp;
     }
 

@@ -15,7 +15,7 @@ public class ChooseAbsen extends AppCompatActivity {
     String absentType ="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        absentType = getIntent().getStringExtra("type");
+        absentType = getIntent().getStringExtra("typeAbsent");
 
 
 
@@ -28,6 +28,7 @@ public class ChooseAbsen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ChooseAbsen.this,SelfieActivity.class);
+                intent.putExtra("typeAbsent",absentType);
                 startActivity(intent);
             }
         });
@@ -36,6 +37,7 @@ public class ChooseAbsen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ChooseAbsen.this,QRActivity.class);
+                intent.putExtra("typeAbsent",absentType);
                 startActivity(intent);
             }
         });

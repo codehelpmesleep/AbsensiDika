@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@drawable/radiussiapp"
+        android:background="#143a69"
         android:elevation="3dp">
 
 
@@ -203,7 +203,7 @@
                         android:orientation="vertical">
 
                         <com.github.nikartm.button.FitButton
-                            android:id="@+id/btnApproval"
+                            android:id="@+id/btnLogout"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_margin="16dp"
@@ -211,16 +211,16 @@
                             app:fb_backgroundColor="#143a69"
                             app:fb_borderColor="#d1a90c"
                             app:fb_borderWidth="@dimen/_2sdp"
-                            app:fb_icon="@drawable/ic_thumb_up"
+                            app:fb_icon="@drawable/ic_cloud_off"
                             app:fb_iconMarginTop="5dp"
                             app:fb_iconWidth="30dp"
                             app:fb_iconHeight="30dp"
-                            app:fb_iconColor="#FFF"
+                            app:fb_iconColor="#fff"
                             app:fb_divHeight="1dp"
                             app:fb_divColor="#FFF"
                             app:fb_divWidth="70dp"
                             app:fb_shape="circle"
-                            app:fb_text="Approval"
+                            app:fb_text=" Logout"
                             app:fb_textColor="#FFF"
                             app:fb_textPaddingStart="5dp"
                             app:fb_textPaddingTop="10dp"
@@ -282,9 +282,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
-
                         <com.github.nikartm.button.FitButton
-                            android:id="@+id/btnLogout"
+                            android:id="@+id/btnApproval"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_margin="16dp"
@@ -292,21 +291,22 @@
                             app:fb_backgroundColor="#143a69"
                             app:fb_borderColor="#d1a90c"
                             app:fb_borderWidth="@dimen/_2sdp"
-                            app:fb_icon="@drawable/ic_cloud_off"
+                            app:fb_icon="@drawable/ic_thumb_up"
                             app:fb_iconMarginTop="5dp"
                             app:fb_iconWidth="30dp"
                             app:fb_iconHeight="30dp"
-                            app:fb_iconColor="#fff"
+                            app:fb_iconColor="#FFF"
                             app:fb_divHeight="1dp"
                             app:fb_divColor="#FFF"
                             app:fb_divWidth="70dp"
                             app:fb_shape="circle"
-                            app:fb_text=" Logout"
+                            app:fb_text="Approval"
                             app:fb_textColor="#FFF"
                             app:fb_textPaddingStart="5dp"
                             app:fb_textPaddingTop="10dp"
                             app:fb_textPaddingBottom="5dp"
                             app:fb_textPaddingEnd="5dp"/>
+
 
                     </LinearLayout>
 

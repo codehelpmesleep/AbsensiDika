@@ -19,10 +19,12 @@ import androidx.appcompat.widget.PopupMenu;
 
 
 import com.github.nikartm.button.FitButton;
+import com.juaracoding.FirebaseUtils.MyService;
 import com.juaracoding.absensidika.CheckIn.activity.ChooseAbsen;
 import com.juaracoding.absensidika.CheckIn.activity.QRActivity;
 import com.juaracoding.absensidika.Login.activity.LoginActivity;
 import com.juaracoding.absensidika.Permission.activity.PermissionApproval;
+import com.juaracoding.absensidika.Permission.activity.QRgeneratorActivity;
 import com.juaracoding.absensidika.R;
 import com.juaracoding.absensidika.Utility.AppUtil;
 
@@ -53,7 +55,9 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        // StartBackgroundTask();
+
+        //Toast.makeText(MainMenu.this,AppUtil.getSetting(MainMenu.this,"firebaseId",""),Toast.LENGTH_LONG).show();
+        StartBackgroundTask();
         btnMenuAtas = findViewById(R.id.more);
         btnCheckIn = findViewById(R.id.btnCheckIn);
         btnCheckout = findViewById(R.id.btnCheckOut);
@@ -62,11 +66,20 @@ public class MainMenu extends AppCompatActivity {
         btnShowQR = findViewById(R.id.btnShowQR);
         btnLogout = findViewById(R.id.btnLogout);
 
+        if(!AppUtil.getSetting(MainMenu.this,"isManager","0").equalsIgnoreCase("1")){
+            btnApproval.setVisibility(View.GONE);
+            btnShowQR.setVisibility(View.GONE);
+        }else{
+            btnApproval.setVisibility(View.VISIBLE);
+            btnShowQR.setVisibility(View.VISIBLE);
+        }
+
 
         btnCheckIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenu.this, ChooseAbsen.class);
+                intent.putExtra("typeAbsent","checkin");
                 startActivity(intent);
             }
         });
@@ -75,6 +88,7 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenu.this, ChooseAbsen.class);
+                intent.putExtra("typeAbsent","checkout");
                 startActivity(intent);
             }
         });
@@ -82,7 +96,16 @@ public class MainMenu extends AppCompatActivity {
         btnIjin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AppUtil.setSetting(MainMenu.this,"showApproval","0");
                 Intent intent = new Intent(MainMenu.this, PermissionApproval.class);
+                startActivity(intent);
+            }
+        });
+
+        btnShowQR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenu.this, QRgeneratorActivity.class);
                 startActivity(intent);
             }
         });
@@ -90,6 +113,7 @@ public class MainMenu extends AppCompatActivity {
         btnApproval.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AppUtil.setSetting(MainMenu.this,"showApproval","1");
                 Intent intent = new Intent(MainMenu.this, PermissionApproval.class);
                 startActivity(intent);
             }
@@ -139,7 +163,7 @@ public class MainMenu extends AppCompatActivity {
 
     }
 
-    /*
+
     private JobScheduler jobScheduler;
     private ComponentName componentName;
     private JobInfo jobInfo;
@@ -153,7 +177,7 @@ public class MainMenu extends AppCompatActivity {
         jobScheduler.schedule(jobInfo);
     }
 
-*/
+
 
 
 

@@ -41,7 +41,6 @@ public interface APIInterfacesRest {
     Call<ModelLogin> getLogin(@Field("username") String username, @Field("password") String password);
 
 
-
     @Multipart
     @POST("api/absent_activity/add")
     Call<SaveModel> absenPhoto(
@@ -59,14 +58,23 @@ public interface APIInterfacesRest {
 
     );
 
+
+
     @GET("api/permission_category/all")
     Call<PermissionCategory> getPermissionCategory();
 
     @GET("api/permission_activity/all")
     Call<PermissionApprovalModel> getApprovalList(@Query("field") String field, @Query("filter") String filter);
 
+    @GET("api/permission_activity/all")
+    Call<PermissionApprovalModel> getApprovalList2();
+
     @GET("api/qr_code_manager/all")
     Call<QrModel> getQRList(@Query("field") String field, @Query("filter") String filter);
+
+    @FormUrlEncoded
+    @POST("api/qr_code_manager/add")
+    Call<SaveModel> qrCodeManager(@Field("qr_number") String qr_number, @Field("expired") String expired, @Field("status") String status,@Field("manager") String manager);
 
 /*
     @Multipart
@@ -88,6 +96,9 @@ public interface APIInterfacesRest {
 */
     @POST("api/permission_activity/add")
     Call<SaveModel> sendPermission(@Body RequestBody file);
+
+    @POST("api/permission_activity/update")
+    Call<SaveModel> updatePermission(@Body RequestBody file);
 
 //contoh
 /*

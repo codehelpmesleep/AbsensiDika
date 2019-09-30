@@ -15,6 +15,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.hardware.Camera;
+import android.location.Address;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -83,6 +84,8 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
 
     String latitude = "";
     String longitude = "";
+    String addressx ="";
+    String absentType="";
 
     LottieAlertDialog progressDialog;
 
@@ -99,7 +102,7 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selfie);
-
+        absentType = getIntent().getStringExtra("typeAbsent");
 
         createRandomVerification();
         setProgressDialog();
@@ -439,13 +442,13 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
         jam = AppUtil.Now();
 
         Call<SaveModel> absentAdd = apiInterface.absenPhoto(
-                toRequestBody(AppUtil.replaceNull("Userid")),
-                toRequestBody(AppUtil.replaceNull("ManagerID")),
-                toRequestBody(AppUtil.replaceNull("open")),
+                toRequestBody(AppUtil.replaceNull(AppUtil.getSetting(SelfieActivity.this,"username",""))),
+                toRequestBody(AppUtil.replaceNull("dewabrata")),
+                toRequestBody(AppUtil.replaceNull(absentType)),
                 toRequestBody(AppUtil.replaceNull(jam)),
                 toRequestBody(AppUtil.replaceNull(latitude)),
                 toRequestBody(AppUtil.replaceNull(longitude)),
-                toRequestBody(AppUtil.replaceNull("address")),
+                toRequestBody(AppUtil.replaceNull(addressx)),
                 toRequestBody(AppUtil.replaceNull("selfie")),
                 toRequestBody(AppUtil.replaceNull("")),
                 bodyImg1);
@@ -557,9 +560,11 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
                 .observeOn(AndroidSchedulers.mainThread())
 
                 .subscribe(location -> {
-                   // Toast.makeText(SelfieActivity.this, location.getLatitude() + ", " + location.getLongitude(), Toast.LENGTH_LONG).show();
+                    // Toast.makeText(SelfieActivity.this, location.getLatitude() + ", " + location.getLongitude(), Toast.LENGTH_LONG).show();
                     latitude = location.getLatitude() + "";
                     longitude = location.getLongitude() + "";
+
+
                 }, throwable -> {
                     if (throwable instanceof RxGps.PermissionException) {
                         // displayError(throwable.getMessage());
@@ -568,7 +573,38 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
                     }
                 });
 
+        rxGps.locationLowPower()
+                .flatMapMaybe(rxGps::geocoding)
+
+
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+
+                .subscribe(address -> {
+                    addressx = getAddressText(address);
+                }, throwable -> {
+                    if (throwable instanceof RxGps.PermissionException) {
+
+                    } else if (throwable instanceof RxGps.PlayServicesNotAvailableException) {
+
+                    }
+                });
     }
+
+    private String getAddressText(Address address) {
+        String addressText = "";
+        final int maxAddressLineIndex = address.getMaxAddressLineIndex();
+
+        for (int i = 0; i <= maxAddressLineIndex; i++) {
+            addressText += address.getAddressLine(i);
+            if (i != maxAddressLineIndex) {
+                addressText += "\n";
+            }
+        }
+
+        return addressText;
+    }
+
 
 
     private void showCustomDialogEnd(String filename, String jam) {
@@ -590,13 +626,15 @@ public class SelfieActivity extends AppCompatActivity implements ActivityCompat.
             ((TextView) dialog.findViewById(R.id.txtJam)).setText(txtJamPulang.getText().toString());
         }
 */
+
         ((TextView) dialog.findViewById(R.id.txtJam)).setText(jam);
         ((TextView) dialog.findViewById(R.id.txtTanggal)).setText(AppUtil.NowX());
         ((TextView) dialog.findViewById(R.id.txtKeterangan)).setText("ABSEN FOTO BERHASIL");
+        ((TextView) dialog.findViewById(R.id.txtPilihAbsen)).setText(absentType);
 
-        ((TextView) dialog.findViewById(R.id.txtPilihAbsen)).setText("DATANG");
 
-        ((TextView) dialog.findViewById(R.id.txtName)).setText("NAMA");
+        ((TextView) dialog.findViewById(R.id.txtName)).setText(AppUtil.getSetting(SelfieActivity.this,"username",""));
+
 
 
         ImageUtil.displayImage(((ImageView) dialog.findViewById(R.id.imgProfile)),com.juaracoding.absensidika.ApiService.AppUtil.BASE_URL +"uploads/absent_activity/"+filename,null);

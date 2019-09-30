@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Address;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
@@ -26,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 
+import com.github.florent37.rxgps.RxGps;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -49,6 +51,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -68,6 +72,9 @@ public class QRActivity extends AppCompatActivity {
 
     String latitude = "";
     String longitude = "";
+    String addressx ="";
+    String absentType ="";
+    String manager="";
 
     LottieAlertDialog progressDialog;
 
@@ -85,7 +92,7 @@ public class QRActivity extends AppCompatActivity {
         setContentView(R.layout.qrcode);
         isScan = true;
 
-
+        absentType = getIntent().getStringExtra("typeAbsent");
         setProgressDialog();
 
          cameraView = (SurfaceView) findViewById(R.id.camera_view);
@@ -249,9 +256,10 @@ public class QRActivity extends AppCompatActivity {
         ((TextView) dialog.findViewById(R.id.txtTanggal)).setText(AppUtil.NowX());
         ((TextView) dialog.findViewById(R.id.txtKeterangan)).setText("ABSEN QR BERHASIL");
 
-        ((TextView) dialog.findViewById(R.id.txtPilihAbsen)).setText("DATANG");
 
-        ((TextView) dialog.findViewById(R.id.txtName)).setText("NAMA");
+        ((TextView) dialog.findViewById(R.id.txtPilihAbsen)).setText(absentType);
+
+        ((TextView) dialog.findViewById(R.id.txtName)).setText(AppUtil.getSetting(QRActivity.this,"username",""));
 
 
      //   ImageUtil.displayImage(((ImageView) dialog.findViewById(R.id.imgProfile)),com.juaracoding.absensidika.ApiService.AppUtil.BASE_URL +"uploads/absent_activity/"+filename,null);
@@ -287,6 +295,7 @@ public class QRActivity extends AppCompatActivity {
 
         ImageView imageSelfie = dialog.findViewById(R.id.imgSelfie);
         imageSelfie.setVisibility(View.GONE);
+        ((TextView)dialog.findViewById(R.id.title)).setText("Scan QR Berhasil");
 
         ((AppCompatButton) dialog.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -317,13 +326,13 @@ public class QRActivity extends AppCompatActivity {
 
 
         Call<SaveModel> absentAdd = apiInterface.absenPhoto(
-                toRequestBody(AppUtil.replaceNull("Userid")),
-                toRequestBody(AppUtil.replaceNull("ManagerID")),
-                toRequestBody(AppUtil.replaceNull("open")),
+                toRequestBody(AppUtil.replaceNull(AppUtil.getSetting(QRActivity.this,"username",""))),
+                toRequestBody(AppUtil.replaceNull(manager)),
+                toRequestBody(AppUtil.replaceNull(absentType)),
                 toRequestBody(AppUtil.replaceNull(AppUtil.Now())),
                 toRequestBody(AppUtil.replaceNull(latitude)),
                 toRequestBody(AppUtil.replaceNull(longitude)),
-                toRequestBody(AppUtil.replaceNull("address")),
+                toRequestBody(AppUtil.replaceNull(addressx)),
                 toRequestBody(AppUtil.replaceNull("qr")),
                 toRequestBody(AppUtil.replaceNull(qr)),
                 null);
@@ -412,6 +421,7 @@ public class QRActivity extends AppCompatActivity {
 
                     if(login.getData().getQrCodeManager() != null) {
                         if (login.getData().getQrCodeManager().size() > 0) {
+                            manager = login.getData().getQrCodeManager().get(0).getManager();
                             if (login.getData().getQrCodeManager().get(0).getQrNumber().equalsIgnoreCase(qr)) {
                                 showCustomDialog(login.getData().getQrCodeManager().get(0).getQrNumber());
                             } else {
@@ -469,5 +479,60 @@ public class QRActivity extends AppCompatActivity {
         RequestBody body = RequestBody.create(MediaType.parse("text/plain"), value);
         return body;
     }
+
+    public void setGPS() {
+        final RxGps rxGps = new RxGps(this);
+
+        rxGps.lastLocation()
+
+
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+
+                .subscribe(location -> {
+                    // Toast.makeText(SelfieActivity.this, location.getLatitude() + ", " + location.getLongitude(), Toast.LENGTH_LONG).show();
+                    latitude = location.getLatitude() + "";
+                    longitude = location.getLongitude() + "";
+
+                }, throwable -> {
+                    if (throwable instanceof RxGps.PermissionException) {
+                        // displayError(throwable.getMessage());
+                    } else if (throwable instanceof RxGps.PlayServicesNotAvailableException) {
+                        // displayError(throwable.getMessage());
+                    }
+                });
+
+        rxGps.locationLowPower()
+                .flatMapMaybe(rxGps::geocoding)
+
+
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+
+                .subscribe(address -> {
+                  addressx = getAddressText(address);
+                }, throwable -> {
+                    if (throwable instanceof RxGps.PermissionException) {
+
+                    } else if (throwable instanceof RxGps.PlayServicesNotAvailableException) {
+
+                    }
+                });
+    }
+
+    private String getAddressText(Address address) {
+        String addressText = "";
+        final int maxAddressLineIndex = address.getMaxAddressLineIndex();
+
+        for (int i = 0; i <= maxAddressLineIndex; i++) {
+            addressText += address.getAddressLine(i);
+            if (i != maxAddressLineIndex) {
+                addressText += "\n";
+            }
+        }
+
+        return addressText;
+    }
+
 
 }

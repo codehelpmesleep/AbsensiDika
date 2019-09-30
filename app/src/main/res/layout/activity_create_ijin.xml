@@ -18,7 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorfontsiap"
+            android:background="#143a69"
             app:contentInsetStartWithNavigation="0dp"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
@@ -213,7 +213,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:backgroundTint="@color/colorfontsiap"
+                    android:backgroundTint="#143a69"
                     android:gravity="top"
                     android:lineSpacingExtra="10sp"
                     android:text="KIRIM"

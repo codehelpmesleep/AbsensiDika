@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.juaracoding.absensidika.Permission.model.approval.PermissionActivity;
 import com.juaracoding.absensidika.R;
+import com.juaracoding.absensidika.Utility.AppUtil;
 import com.juaracoding.absensidika.Utility.Tools;
 import com.juaracoding.absensidika.Utility.ViewAnimation;
 import com.squareup.picasso.Picasso;
@@ -69,15 +70,26 @@ public class AdapterListAttendenceMyApproval extends RecyclerView.Adapter<Recycl
             layoutHeaderTop = (LinearLayout)v.findViewById(R.id.layoutHeaderTop);
             txtNamaAtas = (TextView)v.findViewById(R.id.txtNamaAtas);
             btnApprove = (Button)v.findViewById(R.id.btnApprove);
+            btnApprove.setTag("Approved");
             btnReject = (Button)v.findViewById(R.id.btnReject);
+            btnReject.setTag("Not Approved");
             btnStatus = (Button)v.findViewById(R.id.btnStatus);
             txtTanggal = (TextView)v.findViewById(R.id.txtTanggal);
             txtKeterangan = (TextView)v.findViewById(R.id.txtKeterangan);
             txtNamaBawah = (TextView)v.findViewById(R.id.txtNamaBawah);
             imgDetail = (ImageView)v.findViewById(R.id.imageDetail);
 
-            btnApprove.setVisibility(View.GONE);
-            btnReject.setVisibility(View.GONE);
+            if(AppUtil.getSetting(ctx,"isManager","0").equalsIgnoreCase("0")) {
+
+                    btnApprove.setVisibility(View.GONE);
+                    btnReject.setVisibility(View.GONE);
+
+            }else{
+                if(AppUtil.getSetting(ctx,"showApproval","0").equalsIgnoreCase("0")){
+                    btnApprove.setVisibility(View.GONE);
+                    btnReject.setVisibility(View.GONE);
+                }
+            }
 
 
         }
@@ -101,7 +113,7 @@ public class AdapterListAttendenceMyApproval extends RecyclerView.Adapter<Recycl
 
             view.txtNamaAtas.setText(p.getUserId());
             view.txtNamaBawah.setText(p.getUserId());
-            view.txtTanggal.setText(p.getFromDate() + " - "+p.getToDate());
+            view.txtTanggal.setText(p.getFromDate() + " s/d "+p.getToDate());
             view.txtKeterangan.setText(p.getPermissionId());
 
             /*
@@ -120,7 +132,7 @@ public class AdapterListAttendenceMyApproval extends RecyclerView.Adapter<Recycl
             }
 
             if(p.getStatus()!=null){
-                if(p.getStatus().toString().equalsIgnoreCase("reject")) {
+                if(p.getStatus().toString().equalsIgnoreCase("Not Approved")) {
                     view.btnStatus.setText("REJECT");
                     view.btnStatus.setBackground(ContextCompat.getDrawable(ctx, R.drawable.btn_rounded_red));
                     view.layoutHeaderTop.setBackground(ContextCompat.getDrawable(ctx, R.color.red_500));
@@ -128,7 +140,7 @@ public class AdapterListAttendenceMyApproval extends RecyclerView.Adapter<Recycl
             }
 
             if(p.getStatus()!=null){
-                if(p.getStatus().equalsIgnoreCase("approved")) {
+                if(p.getStatus().equalsIgnoreCase("Approved")) {
                     view.btnStatus.setText("APPROVED");
                     view.btnStatus.setBackground(ContextCompat.getDrawable(ctx, R.drawable.btn_rounded_green));
                     view.layoutHeaderTop.setBackground(ContextCompat.getDrawable(ctx, R.color.green_500));

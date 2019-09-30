@@ -247,7 +247,17 @@ public class LoginActivity extends AppCompatActivity {
                     if (login.getStatus()) {
 
 
+                        if(login.getGroups()!=null){
+
+                            for(int x= 0; x < login.getGroups().size();x++){
+                                if(login.getGroups().get(x).equalsIgnoreCase("8")){
+
+                                    AppUtil.setSetting(LoginActivity.this,"isManager","1");
+                                }
+                            }
+                        }
                         AppUtil.setSetting(LoginActivity.this,"isLogin","1");
+                        AppUtil.setSetting(LoginActivity.this,"username",login.getData().getUsername());
                         startActivity(new Intent(LoginActivity.this, MainMenu.class));
                         finish();
 

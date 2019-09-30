@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@drawable/radiussiapp"
+        android:background="#143a69"
         android:elevation="3dp">
 
 

@@ -27,6 +27,11 @@
 
     </string-array>
 
+    <string-array name="status_approvalx">
+
+        <item>Approval</item>
+
+    </string-array>
     <string-array name="sample_images_name">
         <item>Night Street</item>
         <item>Architect Desk</item>

@@ -33,7 +33,24 @@
         <activity android:name=".Login.activity.LoginActivity" />
         <activity android:name=".Permission.activity.CreatePermission"></activity>
         <activity android:name=".CheckIn.activity.QRActivity" />
+        <activity android:name=".Permission.activity.QRgeneratorActivity"></activity>
         <activity android:name=".MainActivity" />
+
+        <service
+            android:name="com.juaracoding.FirebaseUtils.MyFirebaseMessagingService"
+            android:enabled="true"
+            android:stopWithTask="false"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="com.juaracoding.FirebaseUtils.MyService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -52,5 +69,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <dist:module dist:instant="true" />
+
+
 
 </manifest>

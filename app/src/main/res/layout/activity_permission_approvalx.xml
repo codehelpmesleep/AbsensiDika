@@ -63,7 +63,7 @@
             android:layout_height="35dp"
 
             android:layout_margin="4dp"
-            android:entries="@array/status_approval"
+            android:entries="@array/status_approvalx"
             android:paddingLeft="2dp"
             android:paddingRight="2dp"
             android:popupBackground="@android:color/white"

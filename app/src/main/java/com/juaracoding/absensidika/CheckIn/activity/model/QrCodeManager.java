@@ -1,4 +1,3 @@
-
 package com.juaracoding.absensidika.CheckIn.activity.model;
 
 import java.io.Serializable;
@@ -23,11 +22,14 @@ public class QrCodeManager implements Serializable, Parcelable
     @SerializedName("status")
     @Expose
     private String status;
-    public final static Creator<QrCodeManager> CREATOR = new Creator<QrCodeManager>() {
+    @SerializedName("manager")
+    @Expose
+    private String manager;
+    public final static Parcelable.Creator<QrCodeManager> CREATOR = new Creator<QrCodeManager>() {
 
 
         @SuppressWarnings({
-            "unchecked"
+                "unchecked"
         })
         public QrCodeManager createFromParcel(Parcel in) {
             return new QrCodeManager(in);
@@ -38,14 +40,15 @@ public class QrCodeManager implements Serializable, Parcelable
         }
 
     }
-    ;
-    private final static long serialVersionUID = -1281784714518470436L;
+            ;
+    private final static long serialVersionUID = 6221681938579819222L;
 
     protected QrCodeManager(Parcel in) {
         this.id = ((String) in.readValue((String.class.getClassLoader())));
         this.qrNumber = ((String) in.readValue((String.class.getClassLoader())));
         this.expired = ((String) in.readValue((String.class.getClassLoader())));
         this.status = ((String) in.readValue((String.class.getClassLoader())));
+        this.manager = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     public QrCodeManager() {
@@ -83,15 +86,24 @@ public class QrCodeManager implements Serializable, Parcelable
         this.status = status;
     }
 
+    public String getManager() {
+        return manager;
+    }
+
+    public void setManager(String manager) {
+        this.manager = manager;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id);
         dest.writeValue(qrNumber);
         dest.writeValue(expired);
         dest.writeValue(status);
+        dest.writeValue(manager);
     }
 
     public int describeContents() {
-        return  0;
+        return 0;
     }
 
 }

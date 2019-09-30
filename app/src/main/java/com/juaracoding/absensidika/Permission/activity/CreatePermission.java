@@ -33,6 +33,7 @@ import com.juaracoding.absensidika.ApiService.APIClient;
 import com.juaracoding.absensidika.ApiService.APIInterfacesRest;
 import com.juaracoding.absensidika.Permission.model.PermissionCategory;
 import com.juaracoding.absensidika.R;
+import com.juaracoding.absensidika.Utility.AppUtil;
 import com.juaracoding.absensidika.Utility.SaveModel;
 import com.juaracoding.absensidika.Utility.Tools;
 import com.labters.lottiealertdialoglibrary.DialogTypes;
@@ -447,12 +448,12 @@ public class CreatePermission extends AppCompatActivity {
 
         MultipartBody.Builder builder = new MultipartBody.Builder();
         builder.setType(MultipartBody.FORM);
-        builder.addFormDataPart("user_id", "dewa");
-        builder.addFormDataPart("manager_id", "brahma");
+        builder.addFormDataPart("user_id", AppUtil.getSetting(CreatePermission.this,"username",""));
+        builder.addFormDataPart("manager_id", "");
         builder.addFormDataPart("status", "open");
         builder.addFormDataPart("from_date", tanggal1);
         builder.addFormDataPart("to_date", tanggal2);
-        builder.addFormDataPart("permission_id", String.valueOf(spinner.getSelectedItemPosition() + 1));
+        builder.addFormDataPart("permission_id", spinner.getSelectedItem().toString());
         builder.addFormDataPart("comment", "");
 
 
@@ -558,5 +559,7 @@ public class CreatePermission extends AppCompatActivity {
         }
         return file;
     }
+
+
 
 }

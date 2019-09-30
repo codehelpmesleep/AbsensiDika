@@ -11,11 +11,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.github.nikartm.button.FitButton;
 import com.google.zxing.WriterException;
 import com.juaracoding.absensidika.ApiService.APIClient;
 import com.juaracoding.absensidika.ApiService.APIInterfacesRest;
-import com.juaracoding.absensidika.ApprovalPermission.Activity.ApprovalPermissionActivity;
-import com.juaracoding.absensidika.ApprovalPermission.model.PermissionActivity;
+
+
+import com.juaracoding.absensidika.Login.activity.LoginActivity;
 import com.juaracoding.absensidika.R;
 import com.juaracoding.absensidika.Utility.AppUtil;
 import com.juaracoding.absensidika.Utility.SaveModel;
@@ -40,8 +42,8 @@ public class QRgeneratorActivity extends AppCompatActivity {
   SimpleDateFormat formatDateTime;
   String kode, now, status;
   ImageView qrImage;
-  Button btnQR;
-  SharedPreferencesUtil session;
+  FitButton btnQR;
+  String username;
   SaveModel saveModel;
 
   @Override
@@ -49,7 +51,7 @@ public class QRgeneratorActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_qrgenerator);
 
-    session = new SharedPreferencesUtil(QRgeneratorActivity.this);
+    username = com.juaracoding.absensidika.ApiService.AppUtil.getSetting(QRgeneratorActivity.this,"username","");
     qrImage = findViewById(R.id.qrImage);
     btnQR = findViewById(R.id.btnQR);
     btnQR.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +59,7 @@ public class QRgeneratorActivity extends AppCompatActivity {
       public void onClick(View view) {
         formatDateTime = new SimpleDateFormat("yyyyMMddHHmmss", Locale.US);
         currentTime = Calendar.getInstance().getTime();
-        kode = AppUtil.md5("juaracoding" + session.getUsername() + formatDateTime.format(currentTime));
+        kode = AppUtil.md5("juaracoding" + username + formatDateTime.format(currentTime));
         now = AppUtil.Now();
 
         btnQR.setEnabled(false);
@@ -81,7 +83,7 @@ public class QRgeneratorActivity extends AppCompatActivity {
     progressDialog = new ProgressDialog(QRgeneratorActivity.this);
     progressDialog.setTitle("Loading");
     progressDialog.show();
-    Call<SaveModel> mulaiRequest = apiInterface.qrCodeManager(kode, now, "unscanned");
+    Call<SaveModel> mulaiRequest = apiInterface.qrCodeManager(kode, now, "unscanned",username);
     mulaiRequest.enqueue(new Callback<SaveModel>() {
       @Override
       public void onResponse(Call<SaveModel> call, Response<SaveModel> response) {
